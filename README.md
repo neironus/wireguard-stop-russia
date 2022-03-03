@@ -23,7 +23,8 @@
 
 ``` bash
 # Init docker swarm
-docker swarm init --default-addr-pool 192.168.0.0/16
+# docker swarm init --default-addr-pool 192.168.0.0/16
+docker swarm init --advertise-addr $(hostname -i)
 # Create services on wireguard configs
 export REPLICA_COUNT=1
 export WG_CONF_DIR=/home/$USER/wireguard-conf

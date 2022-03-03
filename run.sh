@@ -15,10 +15,6 @@ _term() {
 
 if [ "$1" = $APP_NAME ]; then
   shift;
-  # /app/firewall.sh
-  # /app/firewall6.sh
-  /app/routing.sh
-  /app/routing6.sh
   /stop-russia/stop.sh &
   wg-quick up wg0
   trap _term SIGTERM

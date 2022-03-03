@@ -28,18 +28,20 @@ RUN buildDeps='patch'; \
 
 ENV APP_NAME="vpnc-app"
 
-COPY run.sh firewall.sh firewall6.sh routing.sh routing6.sh /app/
+COPY run.sh /app/
 RUN apk --no-cache add curl && \
     apk --no-cache add nano && \
     apk --no-cache add iputils && \
-    apk --no-cache add python3 && \
-    apk --no-cache add py3-pip && \
     apk --no-cache add git && \
-    git clone https://github.com/abagayev/stop-russia.git /stop-russia
-    # cd /app/attacker && \
-    # pip install -r requirements.txt
+    git clone https://github.com/abagayev/stop-russia.git /stop-russia && \
+    cp -r stop-russia/strategies/ / && \
+    cp /stop-russia/resources.txt /resources.txt && \
+    rm -rf /root/.cache && mkdir -p /root/.cache && \
+    rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
-# RUN mkdir -p /stop-russia
+    # apk --no-cache add python3 && \
+    # apk --no-cache add py3-pip && \
+
 RUN mkdir -p /gopath
 
 # COPY --from=0 /stop-russia /stop-russia
