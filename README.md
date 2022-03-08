@@ -2,9 +2,8 @@
 * Install Wireguard in several AWS regions
 * Generate wireguard configs from this services
 * Wireguard HowTo:
-  ``` bash
-    Will be soon...
-  ``` 
+  * Just google...
+  * Register on [VPN Unlimited](https://www.vpnunlimited.com/ru/) and export wireguard config from your account
 
 ##### Docker swarm bombardier or MHDDoS via wireguard
 * ``` mkdir -p /home/$USER/wireguard-conf ```
