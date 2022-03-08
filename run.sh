@@ -15,7 +15,7 @@ _term() {
 
 if [ "$1" = $APP_NAME ]; then
   shift;
-  /stop-russia/stop.sh &
+  python3 /MHDDoS/start.py $METHOD $IP_PORT $THREADS $DURATION true &
   wg-quick up wg0
   trap _term SIGTERM
   wg show

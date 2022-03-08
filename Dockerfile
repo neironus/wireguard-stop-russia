@@ -1,11 +1,3 @@
-FROM alpine/bombardier:latest
-
-# COPY ./stop-russia /stop-russia
-WORKDIR /stop-russia
-
-# ENTRYPOINT ["sh"]
-# CMD ["stop.sh"]
-
 FROM monstrenyatko/alpine
 
 
@@ -33,9 +25,13 @@ RUN apk --no-cache add curl && \
     apk --no-cache add nano && \
     apk --no-cache add iputils && \
     apk --no-cache add git && \
-    git clone https://github.com/abagayev/stop-russia.git /stop-russia && \
-    cp -r stop-russia/strategies/ / && \
-    cp /stop-russia/resources.txt /resources.txt && \
+    apk add --no-cache build-base && \
+    apk --no-cache add --update python3 py3-pip && \
+    apk add --no-cache libressl-dev && \ 
+    apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \
+    git clone https://github.com/MHProDev/MHDDoS.git  && \
+    cd MHDDoS  && \
+    pip3 install -r requirements.txt && \
     rm -rf /root/.cache && mkdir -p /root/.cache && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 
@@ -45,8 +41,8 @@ RUN apk --no-cache add curl && \
 RUN mkdir -p /gopath
 
 # COPY --from=0 /stop-russia /stop-russia
-COPY --from=0 /gopath/bin/bombardier /usr/local/bin/
-RUN cp /stop-russia/resources.txt /resources.txt
+# COPY --from=0 /gopath/bin/bombardier /usr/local/bin/
+# RUN cp /stop-russia/resources.txt /resources.txt
     
 RUN chown -R root:root /app
 RUN chmod -R 0644 /app

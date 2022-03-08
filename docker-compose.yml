@@ -3,13 +3,18 @@ services:
   wireguard-client:
     image: wireguard-stop-russia
     deploy:
-      replicas: "$REPLICA_COUNT"
+      replicas: 1
       restart_policy:
         condition: on-failure
     
     environment:
-      - NET_LOCAL
+      # - NET_LOCAL
       - WIREGUARD_PORT
+      - TARGET_URL
+      - METHOD
+      - IP_PORT
+      - THREADS
+      - DURATION
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
