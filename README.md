@@ -21,6 +21,10 @@
   ``` bash
   git clone --branch dripper https://github.com/neironus/wireguard-stop-russia.git
   ```
+  * to use MHDDoS_proxy clone mddos-proxy branch 
+  ``` bash
+  git clone --branch origin/mddos-proxy https://github.com/neironus/wireguard-stop-russia.git
+  ```
 * Change directory to this repo
 * Build docker image (It take about - 20 minutes, feel free to optimize the process): 
     ``` bash 
