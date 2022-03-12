@@ -15,8 +15,10 @@ _term() {
 
 if [ "$1" = $APP_NAME ]; then
   shift;
-  python3 /MHDDoS/start.py $METHOD $IP_PORT $THREADS $DURATION true &
+  cd mhddos_proxy && python3 runner.py $TARGET --http-methods $METHOD -t $REQUESTS_COUNT --rpc $CONNECTIONS -p $ATTACK_PERIOD --debug &
+  if [ "$METHOD" == "udp" ]; then
   wg-quick up wg0
+  fi
   trap _term SIGTERM
   wg show
   sleep infinity &

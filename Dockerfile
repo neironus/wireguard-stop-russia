@@ -29,9 +29,12 @@ RUN apk --no-cache add curl && \
     apk --no-cache add --update python3 py3-pip && \
     apk add --no-cache libressl-dev && \ 
     apk add --no-cache gcc musl-dev python3-dev libffi-dev openssl-dev cargo && \
+    git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy.git && \
+    cd mhddos_proxy && \
     git clone https://github.com/MHProDev/MHDDoS.git  && \
-    cd MHDDoS  && \
-    pip3 install -r requirements.txt && \
+    python3 -m pip install -r MHDDoS/requirements.txt && \
+    # cd MHDDoS  && \
+    # pip3 install -r requirements.txt && \
     rm -rf /root/.cache && mkdir -p /root/.cache && \
     rm -rf /tmp/* /var/tmp/* /var/cache/apk/* /var/cache/distfiles/*
 

@@ -10,11 +10,11 @@ services:
     environment:
       # - NET_LOCAL
       - WIREGUARD_PORT
-      - TARGET_URL
+      - TARGET 
       - METHOD
-      - IP_PORT
-      - THREADS
-      - DURATION
+      - REQUESTS_COUNT 
+      - CONNECTIONS
+      - ATTACK_PERIOD
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
